@@ -2,20 +2,20 @@ package ru.pavel.OpenEr.Config;
 
 public class Setting {
     private int activationKeyVirtualCode;
-    private Setting setting;
+    private static Setting setting;
 
     private Setting(){
 
     }
-    public Setting getSetting(){
-        if (this.setting == null){
+    public static Setting getSetting(){
+        if (setting == null){
             synchronized (Setting.class){
-                if (this.setting == null){
-                    this.setting = new Setting();
+                if (setting == null){
+                    setting = new Setting();
                 }
             }
         }
-        return this.setting;
+        return setting;
     }
     public int getActivationKeyVirtualCode(){
         return this.activationKeyVirtualCode;

@@ -1,5 +1,6 @@
 package ru.pavel.OpenEr.Config.ShortcutInitializer;
 
+import ru.pavel.OpenEr.Config.Setting;
 import ru.pavel.OpenEr.Core.ManagementStructures.ShortcutManager.HashtableShortcutManager;
 import ru.pavel.OpenEr.Core.ManagementStructures.ShortcutManager.ShortcutManager;
 import ru.pavel.OpenEr.Domain.Shortcut.ProgramShortcut;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 
 public class Initializer {
     public static void initialize() throws  FileNotFoundException{
+        initializeSetting();
         initializeShortcut();
     }
     private static void initializeShortcut() throws FileNotFoundException {
@@ -21,9 +23,7 @@ public class Initializer {
             manager.addShortcut(words[0],new ProgramShortcut(words[1]));
         }
     }
-
-    private void initializeSettings(){
-
+    private static void initializeSetting(){
+        Setting.getSetting().setActivationKeyVirtualCode(56);
     }
-
 }
