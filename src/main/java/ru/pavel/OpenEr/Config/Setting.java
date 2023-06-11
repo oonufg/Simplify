@@ -1,8 +1,12 @@
 package ru.pavel.OpenEr.Config;
 
+import java.io.File;
+
 public class Setting {
-    private int activationKeyVirtualCode;
     private static Setting setting;
+    private int activationKeyVirtualCode;
+    private File configFile;
+    private File shortcutsFile;
 
     private Setting(){
     }
@@ -17,6 +21,21 @@ public class Setting {
         }
         return setting;
     }
+
+    public File getShortcutsFile(){
+        return this.configFile;
+    }
+    public void setShortcutsFile(File shortcutsFile){
+        this.shortcutsFile = shortcutsFile;
+    }
+
+    public File getConfigFile(){
+        return this.configFile;
+    }
+    public void setConfigFile(File configFile){
+        this.configFile = configFile;
+    }
+
     public int getActivationKeyVirtualCode(){
         return this.activationKeyVirtualCode;
     }
