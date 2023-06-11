@@ -23,7 +23,7 @@ public class Setting {
     }
 
     public File getShortcutsFile(){
-        return this.configFile;
+        return this.shortcutsFile;
     }
     public void setShortcutsFile(File shortcutsFile){
         this.shortcutsFile = shortcutsFile;
