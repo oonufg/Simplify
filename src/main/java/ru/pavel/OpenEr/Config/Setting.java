@@ -5,8 +5,8 @@ public class Setting {
     private static Setting setting;
 
     private Setting(){
-
     }
+
     public static Setting getSetting(){
         if (setting == null){
             synchronized (Setting.class){
