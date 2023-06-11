@@ -19,8 +19,7 @@ public class Initializer {
         initializeService();
     }
     private static void initializeShortcut() throws FileNotFoundException {
-        File file = new File("C:\\Users\\pyumi\\IdeaProjects\\OpenEr\\src\\main\\resources\\user.txt");
-        Scanner scanner = new Scanner(file);
+        Scanner scanner = new Scanner(Setting.getSetting().getShortcutsFile());
         ShortcutManager manager = HashtableShortcutManager.getShortcutManager();
         while(scanner.hasNextLine()){
             String[] words = scanner.nextLine().split("'");
@@ -28,7 +27,9 @@ public class Initializer {
         }
     }
     private static void initializeSetting(){
-        Setting.getSetting().setActivationKeyVirtualCode(56);
+        Setting setting = Setting.getSetting();
+        setting.setActivationKeyVirtualCode(56);
+        setting.setShortcutsFile(new File("C:\\Users\\pyumi\\IdeaProjects\\OpenEr\\src\\main\\resources\\user.txt"));
     }
 
     private static void initializeService(){
