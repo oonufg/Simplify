@@ -1,10 +1,17 @@
 package ru.pavel.OpenEr.Domain.Shortcut;
 
-import java.io.IOException;
 
-public class ProgramShortcut implements Shortcut{
-    String programAddress;
-    public ProgramShortcut(String programAddress){
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.IOException;
+public class ProgramShortcut extends AbstractShortcut{
+
+    public ProgramShortcut(){
+        super();
+    }
+    public ProgramShortcut(String name, String discription ,String programAddress){
+        this.name = name;
+        this.discription = discription;
         this.programAddress = programAddress;
     }
     public void execute() throws IOException {

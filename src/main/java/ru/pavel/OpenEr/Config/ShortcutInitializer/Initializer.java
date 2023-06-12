@@ -6,11 +6,12 @@ import ru.pavel.OpenEr.Config.Setting;
 import ru.pavel.OpenEr.Core.ManagementStructures.EventListener.KeyListener;
 import ru.pavel.OpenEr.Core.ManagementStructures.ShortcutManager.HashtableShortcutManager;
 import ru.pavel.OpenEr.Core.ManagementStructures.ShortcutManager.ShortcutManager;
-import ru.pavel.OpenEr.Domain.Shortcut.ProgramShortcut;
-
+import ru.pavel.OpenEr.Core.Persistance.ShortcutDAO.ShortcutDAO;
+import ru.pavel.OpenEr.Core.Persistance.ShortcutDAO.ShortcutJSONFormat;
+import ru.pavel.OpenEr.Domain.Shortcut.AbstractShortcut;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Initializer {
     public static void initialize() throws  FileNotFoundException{
@@ -19,14 +20,16 @@ public class Initializer {
         initializeService();
     }
     private static void initializeShortcut() throws FileNotFoundException {
-        Scanner scanner = new Scanner(Setting.getSetting().getShortcutsFile());
+        ShortcutDAO shortcutDAO = new ShortcutJSONFormat();
         ShortcutManager manager = HashtableShortcutManager.getShortcutManager();
-        while(scanner.hasNextLine()){
-            String[] words = scanner.nextLine().split("'");
-            manager.addShortcut(words[0],new ProgramShortcut(words[1]));
+        ArrayList<AbstractShortcut> shortcuts = shortcutDAO.load();
+        for(AbstractShortcut shortcut: shortcuts){
+            manager.addShortcut(shortcut.getCommand(),shortcut);
         }
+
     }
     private static void initializeSetting(){
+        
         Setting setting = Setting.getSetting();
         setting.setActivationKeyVirtualCode(56);
         setting.setShortcutsFile(new File("C:\\Users\\pyumi\\IdeaProjects\\OpenEr\\src\\main\\resources\\user.txt"));
