@@ -34,7 +34,6 @@ public class KeyListener implements NativeKeyListener{
             this.readyToRead = false;
             if (this.manager.isExist(this.word.toLowerCase())) {
                 try {
-
                     this.manager.getShortcut(this.word.toLowerCase()).execute();
                 }catch(IOException e){
                     System.out.println(e.getMessage());

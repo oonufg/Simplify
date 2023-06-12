@@ -16,7 +16,7 @@ public class ShortcutJSONFormat implements ShortcutDAO{
     private ObjectMapper objectMapper;
 
     public ShortcutJSONFormat(){
-        this.shortcutFile = new ShortcutFile();
+        this.shortcutFile = ShortcutFile.getShortcutFile();
         this.objectMapper = new ObjectMapper();
         this.objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     }

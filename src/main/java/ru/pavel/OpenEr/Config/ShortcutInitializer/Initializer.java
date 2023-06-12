@@ -9,6 +9,8 @@ import ru.pavel.OpenEr.Core.ManagementStructures.ShortcutManager.ShortcutManager
 import ru.pavel.OpenEr.Core.Persistance.ShortcutDAO.ShortcutDAO;
 import ru.pavel.OpenEr.Core.Persistance.ShortcutDAO.ShortcutJSONFormat;
 import ru.pavel.OpenEr.Domain.Shortcut.AbstractShortcut;
+import ru.pavel.OpenEr.Multithreading.KeyListenerThread;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -32,11 +34,12 @@ public class Initializer {
         
         Setting setting = Setting.getSetting();
         setting.setActivationKeyVirtualCode(56);
-        setting.setShortcutsFile(new File("C:\\Users\\pyumi\\IdeaProjects\\OpenEr\\src\\main\\resources\\user.txt"));
+        setting.setShortcutsFile(new File("C:\\Users\\pyumi\\IdeaProjects\\OpenEr\\src\\main\\resources\\shortcuts.json"));
     }
 
     private static void initializeService(){
-        initializeKeyListener();
+        Thread keyListenerThread = new Thread(new KeyListenerThread());
+        keyListenerThread.start();
     }
     private static void initializeKeyListener(){
         try {
